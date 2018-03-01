@@ -1,0 +1,35 @@
+{
+  "name": "i18n-chunks-webpack-plugin",
+  "version": "0.1.0",
+  "description": "Look in all chunks for files that match a rule and then, associate and generate translations files with it.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AsyncWizard/i18n-chunks-webpack-plugin.git"
+  },
+  "keywords": [
+    "i18n",
+    "webpack-plugin",
+    "chunks"
+  ],
+  "author": "AsyncWizard",
+  "devDependencies": {
+    "eslint": "^4.18.1",
+    "eslint-config-webpack": "^1.2.1",
+    "eslint-plugin-import": "^2.2.0"
+  },
+  "peerDependencies": {
+    "webpack": "^2.0.0 || >= 3.0.0-rc.0 || ^3.0.0"
+  },
+  "engines": {
+    "node": ">= 4.3 < 5.0.0 || >= 5.10"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AsyncWizard/i18n-chunks-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/AsyncWizard/i18n-chunks-webpack-plugin#readme"
+}
