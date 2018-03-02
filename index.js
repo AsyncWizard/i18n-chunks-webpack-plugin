@@ -20,19 +20,21 @@ function sanitize(file) {
 module.exports = class {
   constructor(opts = {}) {
     this.modules = opts.modules || [];
-    this.entriesPath = opts.distPath || path.join(process.cwd(), './webpack-i18n-entries');
-    if (!fs.existsSync(this.entriesPath)) { fs.mkdirSync(this.entriesPath); }
+    this.tmpEntriesPath = opts.tmpEntriesPath || path.join(process.cwd(), './webpack-i18n-entries');
+    this.jsonpChunksCallback = opts.jsonpChunksCallback || 'webpackI18NChunks';
+    this.jsonpManifestCallback = opts.jsonpManifestCallback || 'webpackI18NManifest';
+    if (!fs.existsSync(this.tmpEntriesPath)) { fs.mkdirSync(this.tmpEntriesPath); }
   }
   makeTmpSourcesFiles(i18nChunks) {
     for (const [fileName, chunksList] of Object.entries(i18nChunks)) {
       // Generating modules here
 
       // TODO: generic i18nLib after ?
-      let moduleContent = `webpackI18NChunks.add('${chunksList.langId}'`;
+      let moduleContent = `${this.jsonpChunksCallback}.add('${chunksList.langId}'`;
       for (const chunkPath of chunksList) { moduleContent += `, require('${chunkPath}')`; }
       moduleContent += ')';
 
-      fs.writeFileSync(path.join(this.entriesPath, `${sanitize(fileName)}.js`), moduleContent);
+      fs.writeFileSync(path.join(this.tmpEntriesPath, `${sanitize(fileName)}.js`), moduleContent);
     }
   }
   startChildCompilation(compilation, filename) {
@@ -46,7 +48,7 @@ module.exports = class {
       childCompiler.apply(
         new SingleEntryPlugin(
           compilation.compiler.context,
-          path.join(this.entriesPath, sanitize(filename)),
+          path.join(this.tmpEntriesPath, sanitize(filename)),
         ),
       // new LoaderTargetPlugin('web')
       );
@@ -132,7 +134,7 @@ module.exports = class {
           };
 
           // TODO: Par la suite, ajouter tout autre info importantes dans ce manifest
-          const source = `webpackI18NManifest(${JSON.stringify(manifest)});`;
+          const source = `${this.jsonpManifestCallback}(${JSON.stringify(manifest)});`;
           const { assets } = compilation;
           assets['webpack-i18n-manifest.js'] = {
             source() {
