@@ -93,15 +93,15 @@ module.exports = class {
           .replace(/\.js$/i, '')
           .replace(/\[id]/g, chunk.id)
           .replace(/\[chunkhash]/g, chunk.renderedHash)
-      ;
+        ;
 
-      // let i18nChunksFiles = [];
+        // let i18nChunksFiles = [];
         for (const normalModule of chunk.modules) {
           for (const { rule, languagesFiles } of modules) {
             if (rule.test(normalModule.portableId)) {
-            // On ajoute les fichiers de langue au chunk donné:
+              // On ajoute les fichiers de langue au chunk donné:
 
-            // Parcour des langues pour les ajouter:
+              // Parcour des langues pour les ajouter:
               for (const [langId, langPath] of Object.entries(languagesFiles)) {
                 const chunkI18NIdentifier = chunk.entryModule ? `${outputDirname + (chunk.name || 'entry')}-${langId}` : `${chunkId}-${langId}`;
 
