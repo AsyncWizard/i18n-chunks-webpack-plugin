@@ -16,6 +16,10 @@
     "chunks"
   ],
   "author": "AsyncWizard",
+  "homepage": "https://github.com/AsyncWizard/i18n-chunks-webpack-plugin#readme",
+  "files":[
+    "index.js"
+  ],
   "devDependencies": {
     "eslint": "^4.18.1",
     "eslint-config-webpack": "^1.2.1",
@@ -30,6 +34,5 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/AsyncWizard/i18n-chunks-webpack-plugin/issues"
-  },
-  "homepage": "https://github.com/AsyncWizard/i18n-chunks-webpack-plugin#readme"
+  }
 }
