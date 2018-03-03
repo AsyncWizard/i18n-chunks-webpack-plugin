@@ -1,6 +1,6 @@
 {
   "name": "i18n-chunks-webpack-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Look in all chunks for files that match a rule and then, associate and generate translations files with it.",
   "main": "index.js",
   "scripts": {

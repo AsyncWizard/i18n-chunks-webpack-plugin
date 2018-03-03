@@ -7,7 +7,7 @@ If you have lazy loaded files, the plugin will generate separates files for each
 Install with npm:
 
 ```
-npm i glob
+npm i i18n-chunks-webpack-plugin
 ```
 
 ## Usage
